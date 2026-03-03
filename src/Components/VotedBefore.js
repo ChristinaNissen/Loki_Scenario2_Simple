@@ -1,0 +1,113 @@
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import VoteContext from "../Contexts/VoteContext";
+import ProcessBar from "./ProcessBar";
+import Footer from "./Footer";
+import "./Voting-system.css";
+import "./VotedBefore.css";
+import { saveVotedBefore } from "../API/Voter.js";
+
+const VotedBefore = () => {
+  const navigate = useNavigate();
+  const { setUserSelectedYes } = useContext(VoteContext);
+  const [selected, setSelected] = useState(null); // null means none selected yet
+  const [showError, setShowError] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleSelect = (value) => {
+    if (selected === value) {
+      setSelected(null); // unselect if clicked again
+    } else {
+      setSelected(value);
+    }
+  };
+
+  const handleNext = async () => {
+     if (selected === null) {
+      setShowError(true);
+      return;
+    }
+    if (selected === true) {
+      setUserSelectedYes(true);
+      await saveVotedBefore(true);
+      navigate("/selection");
+    } else if (selected === false) {
+      setUserSelectedYes(false);
+      await saveVotedBefore(false);
+      //navigate("/voting");
+      navigate("/voting2");
+    }
+  };
+
+  const stepsNo = ["Voted Before", "Voting", "Confirmation"];
+  const stepsYes = ["Voted Before", "Identification of Previous Ballots", "Voting", "Confirmation"];
+
+  return (
+    <div className="page-wrapper">
+      <main className="welcome-main" >
+        <ProcessBar steps={selected ? stepsYes : stepsNo} currentStep={1} />
+        <h1 className="voted-before-h1">Have you voted before in this election?</h1>
+        <div className="text-main text-voted-before" style={{ marginBottom: "1px" }}>
+          Please select below whether you have voted in this election before or not.
+        </div>
+        <div className="security-box-voted-before">
+           <p className="text-small">
+            <strong>Why is this step needed?</strong><br />
+            This step ensures that you can update your vote if needed. If this is your first time voting in this election, click "<strong>No</strong>" below. If you want to update your previous vote, click "<strong>Yes</strong>" below, then identify your previous vote(s) by selecting the pictures you have seen before, and cast your new vote.<br /><br />
+            This step also protects against coercion. If you have already cast your true vote before being coerced, you can click "<strong>No</strong>" (even if you have voted before) to keep your true vote. If you were coerced before casting your true vote, you can later click "<strong>Yes</strong>" when you are alone, select the pictures from the coerced session, and cast your true vote.<br /><br />
+            <a href="/help#what-is-coercion" className="faq-link">Read more in the FAQ</a>
+          </p>
+        </div>
+        <div className="card-wide voted-before" style={{ padding: "40px 20px" }}>
+          <div className="box-container">
+            <div
+              className={`yellow-box ${selected === false ? "selected" : ""}`}
+              onClick={() => handleSelect(false)}
+            >
+              <p className="text-small">
+                <strong>No</strong>
+                <br />
+                This is my first time voting in this election
+              </p>
+            </div>
+
+             <div
+              className={`yellow-box ${selected === true ? "selected" : ""}`}
+              onClick={() => handleSelect(true)}
+            >
+              <p className="text-small">
+                <strong>Yes</strong>
+                <br />
+                I have voted before in this election
+              </p>
+            </div>
+          </div>
+        </div>
+          <div>
+        <button className="button next-voted-before" onClick={handleNext}>
+            Next
+          </button>
+           </div>
+
+
+
+        {showError && (
+          <div className="error-overlay">
+            <div className="error-message">
+              <p>Please select an option</p>
+              <button className="button" onClick={() => setShowError(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default VotedBefore;
