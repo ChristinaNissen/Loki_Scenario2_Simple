@@ -177,11 +177,8 @@ function BallotConfirmationPicture2(setIsLoggedIn) {
           </div>
            <div className="security-box-confirmation">
             <p className="text-small">
-               <strong>Why do you need this picture?</strong><br />
-              This picture is a unique visual identifier linked to your voting record. You will need to remember this picture from memory if you wish to update your vote later in the election, as it proves your identity and ensures that only you can make changes to your ballot.<br /><br />
-              This picture also protects against coercion. If you are coerced, you can later cast your true vote by selecting all the pictures you have seen before.
-              <br /><br />
-              <a href="/help#ballot-verification-security" className="faq-link">Read more in the FAQ</a>
+              <strong>Security Feature:</strong><br/>
+              This picture is a unique visual identifier linked to your voting record. You will need to remember this picture from memory if you wish to update your vote later in the election.
             </p>
           </div>
         </div>

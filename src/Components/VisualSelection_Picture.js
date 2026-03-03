@@ -217,13 +217,10 @@ const VisualSelectionPicture = () => {
             Please select all pictures below that you have seen when casting your previous ballots.
           </div>
           <div className="security-box-selection">
-             <p className="text-small">
-              <strong>Why is this step needed?</strong><br />
-              This step verifies your identity, ensuring that only you can update your vote by recognising the pictures shown to you after your previous voting session(s).<br /><br />
-              This step also protects against coercion. If you are coerced, you can select wrong pictures after casting your true vote or later update your vote by selecting the correct picture(s).<br /><br />
-              If you cannot remember your picture(s), you can always vote in person at your local polling station.<br /><br />
-              <a href="/help#ballot-verification-security" className="faq-link">Read more in the FAQ</a>
-            </p>
+              <p className="text-small">
+              <strong>Security Feature:</strong><br/>
+              This step verifies your identity, ensuring that only you can update your vote by recognising the pictures shown to you after your previous voting session(s).            
+              </p>
           </div>
         </div>
         <div className="card-wide">
@@ -237,7 +234,6 @@ const VisualSelectionPicture = () => {
               <li>Only the correct selection will ensure that your vote gets updated and counted into the results.</li>
               <li>If you are unsure or cannot remember your pictures, please contact election officials at your polling station.</li>
               <li>If someone is pressuring you, you can select wrong pictures to protect your true vote. If you need to update a coerced vote, select all the pictures you have seen before.</li>
-
             </ul>
           </div>
           <div className="filter-card">
