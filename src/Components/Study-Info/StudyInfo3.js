@@ -44,7 +44,7 @@ const StudyInfo3 = () => {
             <div className="step-number">1</div>
             <div className="step-content">
               <p>
-This voting system is designed to help voters resist coercion. All candidates are fictional. In the first part of the study, you cast a vote for John Doe, following the coercer’s instructions. In this second part, to protect your vote, we ask that you <strong>update this vote</strong> for the candidate 'Sofia Lee' in the election.              </p>
+ All candidates are fictional. In the first part of the study, you cast a vote for John Doe, following the coercer’s instructions. In this second part, to protect your vote, we ask that you <strong>update this vote</strong> for the candidate 'Sofia Lee' in the election.              </p>
               <label className="check-box blue-bg-highlight">
                 <input
                   type="checkbox"
