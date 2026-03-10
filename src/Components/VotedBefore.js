@@ -3,15 +3,16 @@ import { useNavigate } from "react-router-dom";
 import VoteContext from "../Contexts/VoteContext";
 import ProcessBar from "./ProcessBar";
 import Footer from "./Footer";
+import { saveVotedBefore } from "../API/Voter";
 import "./Voting-system.css";
 import "./VotedBefore.css";
-import { saveVotedBefore } from "../API/Voter.js";
 
 const VotedBefore = () => {
   const navigate = useNavigate();
   const { setUserSelectedYes } = useContext(VoteContext);
-  const [selected, setSelected] = useState(null); // null means none selected yet
+  const [selected, setSelected] = useState(null);
   const [showError, setShowError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,7 +20,7 @@ const VotedBefore = () => {
 
   const handleSelect = (value) => {
     if (selected === value) {
-      setSelected(null); // unselect if clicked again
+      setSelected(null);
     } else {
       setSelected(value);
     }
@@ -30,15 +31,21 @@ const VotedBefore = () => {
       setShowError(true);
       return;
     }
-    if (selected === true) {
-      setUserSelectedYes(true);
-      await saveVotedBefore(true);
-      navigate("/selection");
-    } else if (selected === false) {
-      setUserSelectedYes(false);
-      await saveVotedBefore(false);
-      navigate("/voting");
-      //navigate("/voting2");
+    setIsLoading(true);
+    try {
+      if (selected === true) {
+        setUserSelectedYes(true);
+        await saveVotedBefore(true);
+        navigate("/selection");
+      } else if (selected === false) {
+        setUserSelectedYes(false);
+        await saveVotedBefore(false);
+        navigate("/voting");
+        //navigate("/voting2");
+      }
+    } catch (error) {
+      console.error("Error saving vote:", error);
+      setIsLoading(false);
     }
   };
 
@@ -84,8 +91,12 @@ const VotedBefore = () => {
           </div>
         </div>
           <div>
-        <button className="button next-voted-before" onClick={handleNext}>
-            Next
+        <button 
+          className="button next-voted-before" 
+          onClick={handleNext}
+          disabled={isLoading}
+        >
+            {isLoading ? "Processing..." : "Next"}
           </button>
            </div>
 
