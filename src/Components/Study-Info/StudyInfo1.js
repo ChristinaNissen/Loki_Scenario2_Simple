@@ -80,6 +80,19 @@ All candidates are fictional. For this part of the study, we ask you to imagine 
             </div>
           </div>
 
+
+          <hr className="step-divider" />
+
+          {/* Step 3 */}
+          <div className="step-row">
+            <div className="step-number">3</div>
+            <div className="step-content">
+              <p>
+                Please complete the full voting flow, including the pages after casting your vote. You will be redirected to Prolific at the end of the study.
+              </p>
+            </div>
+          </div>
+
           <hr className="step-divider" />
 
           <div style={{ paddingTop: "1rem" }}>
