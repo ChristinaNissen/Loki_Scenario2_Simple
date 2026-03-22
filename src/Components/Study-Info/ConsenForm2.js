@@ -28,7 +28,7 @@ const ConsentForm2 = () => {
         <p>
           The purpose of this study is to investigate user experience in an online voting system intended for general elections. Before proceeding, we ask for your consent.
         </p>
-       <h3 className="title-margin-top">Description of research</h3>
+        <h3 className="title-margin-top">Description of research</h3>
         <p>
           Before entering the voting system, you will be asked to download an
           instruction paper for the voting system and instructed which task to complete.
@@ -113,8 +113,7 @@ The voting system you are testing is designed to help prevent coercion in online
             <span className="bold-text">SurveyXact:</span> We use SurveyXact to
             carry out the survey. Personal data (gender, age, nationality, level
             of education) will be collected through the questions and stored on
-            the SurveyXact platform. The third parties mentioned below will not
-            have access to this data. Please refer to SurveyXact’s privacy
+            the SurveyXact platform. Please refer to SurveyXact’s privacy
             policy for more information:{" "}
             <a
               className="info-link"
