@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./study-info.css";
-import Instructions from "../../Assets/Instructions_e-voting.pdf";
+import Instructions from "../../Assets/Voting_System_Instructions.pdf";
 import { downloadFile } from "../../util";
 
 const StudyInfo1 = () => {
