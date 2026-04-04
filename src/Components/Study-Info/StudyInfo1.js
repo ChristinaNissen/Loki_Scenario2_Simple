@@ -69,12 +69,12 @@ Take your time and interact with the system in a way that feels natural to you, 
           <div className="step-row">
             <div className="step-number">2</div>
             <div className="step-content">
-            
+            <p>
                 Please download the instructions which you need to follow to complete the General Election 2025.
          
               
                 In a real election you would get these instructions as a physical or digital letter by the election authorities.
-            
+            </p>
             
               <button
                 type="button"

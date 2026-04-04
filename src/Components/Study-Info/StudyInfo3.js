@@ -76,12 +76,12 @@ Take your time and complete the process as you would in a real-life situation.
           <div className="step-row">
             <div className="step-number">2</div>
             <div className="step-content">
-                         
+              <p>  
                 Please download the instructions which you need to follow to complete the General Election 2025.
          
               
                 In a real election you would get these instructions as a physical or digital letter by the election authorities.
-            
+            </p> 
               <p className="text-margin-top">
                 <span className="blue-bg-highlight">
                   Make sure that you can access the letter throughout the study.
