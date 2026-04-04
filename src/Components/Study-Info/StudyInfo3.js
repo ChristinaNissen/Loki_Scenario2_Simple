@@ -44,7 +44,20 @@ const StudyInfo3 = () => {
             <div className="step-number">1</div>
             <div className="step-content">
               <p>
- All candidates are fictional. In the first part of the study, you cast a vote for 'John Doe', following the coercer’s instructions. In this second part, to protect your vote, we ask that you <strong>update this vote</strong> for the candidate 'Sofia Lee' in the election.              </p>
+Imagine that the general election in your country is still ongoing, and that voters can access the system at any time during the election period to update their vote for flexibility.
+<br></br>
+<br></br>
+Earlier in the election period, you used this system and followed the coercer’s instruction to cast your vote for John Doe.
+<br></br>
+<br></br>
+Now imagine that some time has passed, and you are now alone again. You decide to use the online voting system to update your vote for the candidate Sofia Lee, replacing your previous selection.
+<br></br>
+<br></br>
+Please use the online voting system to go through the process and update your vote for Sofia Lee in the election, just as you would if this were a real election.
+<br></br>
+<br></br>
+Take your time and complete the process as you would in a real-life situation.
+               </p>
               <label className="check-box blue-bg-highlight">
                 <input
                   type="checkbox"
@@ -52,7 +65,7 @@ const StudyInfo3 = () => {
                   onChange={handleChangeCheckbox}
                   className="blue-bg-highlight"
                 />
-                I understand and will update my vote to cast a true vote for Sofia Lee.
+                I understand that I should update my vote to Sofia Lee in the election.
               </label>
             </div>
           </div>
@@ -98,7 +111,9 @@ const StudyInfo3 = () => {
           
           <hr className="step-divider" />
 
-          <div style={{ paddingTop: "1rem" }}>
+          <div>
+
+          <p> In the next step, you will be redirected to the front page of the voting system. Click “Start” to proceed.</p>
             <button
               id="submit-pid"
               type="submit"

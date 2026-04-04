@@ -44,7 +44,13 @@ const StudyInfo1 = () => {
             <div className="step-number">1</div>
             <div className="step-content">
               <p>
-All candidates are fictional. For this part of the study, we ask you to imagine that you are being coerced to cast a vote. This coerced vote will be your <strong>first vote in the election</strong>. Please follow the coercer's instructions and cast a vote for 'John Doe'.
+Imagine that today is the day of a general election in your country. You are at home, using your own device, and have decided to vote through a newly introduced online voting system designed to make participation easier and more accessible.
+<br></br>
+<br></br>
+You have not yet cast your vote in the election. In this situation, you are now being pressured by another person who instructs you to vote for John Doe. Please use the online voting system to go through the process and cast your vote as instructed.
+<br></br>
+<br></br>
+Take your time and interact with the system in a way that feels natural to you, as if your vote truly matters.
               </p>
               <label className="check-box blue-bg-highlight">
                 <input
@@ -53,7 +59,7 @@ All candidates are fictional. For this part of the study, we ask you to imagine 
                   onChange={handleChangeCheckbox}
                   className="blue-bg-highlight"
                 />
-              I understand and will follow the coercer’s instructions and cast my vote for John Doe.              </label>
+              I understand that I should vote for “John Doe” in the election.             </label>
             </div>
           </div>
 
@@ -95,7 +101,9 @@ All candidates are fictional. For this part of the study, we ask you to imagine 
 
           <hr className="step-divider" />
 
-          <div style={{ paddingTop: "1rem" }}>
+          <div>
+
+          <p> In the next step, you will be redirected to the front page of the voting system. Click “Start” to proceed.</p>
             <button
               id="submit-pid"
               type="submit"
