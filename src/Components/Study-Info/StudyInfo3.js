@@ -58,19 +58,19 @@ const StudyInfo3 = () => {
 Earlier in the election period, you used this system and followed the coercer’s instruction to cast your vote for John Doe.
  </p>
  <p>
-Now imagine that some time has passed, and you are now alone again. You decide to use the online voting system to update your vote for the candidate Sofia Lee, replacing your previous selection.
+Now imagine that some time has passed, and you are alone again.
 </p>
 
 
    <div className="study-task-box">
                 <p className="study-task-heading">Your task</p>
                 <ul className="study-task-list">
-                  <li><strong>You have already voted for John Doe under pressure.</strong></li>
+                  <li>You have already voted for John Doe under coercion.</li>
                   <li><strong>Use the voting system to update your vote to Sofia Lee.</strong></li>
                 </ul>
               </div>
 <p>
-Take your time and complete the process as you would in a real-life situation.
+                Take your time and complete the process as you would in a real-life situation.
                </p>
             </div>
           </div>
