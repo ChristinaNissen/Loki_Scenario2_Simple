@@ -68,7 +68,7 @@ Now imagine that some time has passed, and you are alone again.
                 <p className="study-task-heading">Your task</p>
                 <ul className="study-task-list">
                   <li>You have already voted for John Doe under coercion.</li>
-                  <li><strong>Use the voting system to update your vote to Sofia Lee.</strong></li>
+                  <li><strong>Use the voting system to update your vote for Sofia Lee.</strong></li>
                 </ul>
               </div>
 <p>
@@ -142,8 +142,8 @@ Now imagine that some time has passed, and you are alone again.
                     <input
                       type="radio"
                       name="task-check"
-                      value="vote-for-sofia-lee"
-                      checked={selectedTaskOption === "vote-for-sofia-lee"}
+                      value="update-vote-for-sofia-lee"
+                      checked={selectedTaskOption === "update-vote-for-sofia-lee"}
                       onChange={handleTaskOptionChange}
                     />
                     Update your vote for Sofia Lee.
@@ -152,8 +152,8 @@ Now imagine that some time has passed, and you are alone again.
                     <input
                       type="radio"
                       name="task-check"
-                      value="follow-pressure"
-                      checked={selectedTaskOption === "follow-pressure"}
+                      value="update-vote-for-martin-taylor"
+                      checked={selectedTaskOption === "update-vote-for-martin-taylor"}
                       onChange={handleTaskOptionChange}
                     />
                     Update your vote for Martin Taylor.
