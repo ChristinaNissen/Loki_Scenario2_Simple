@@ -13,6 +13,8 @@ export async function addVoter(ID, password, RandomID, taskAnswer = "") {
   user.set("BallotSelection", "");
   user.set("TrackingID", RandomID);
   user.set("TaskAnswer", taskAnswer);
+  user.set("HowToVoteVideoClickCount", 0);
+  user.set("CoercionVideoClickCount", 0);
   user.set("StartTimeFirstPhase", new Date().toLocaleString('en-US', { timeZone: 'Europe/Copenhagen' }));
   try {
     await user.signUp();
@@ -65,47 +67,31 @@ export default function getCurrentUser() {
 }
 
 
-export async function saveVote(vote) {
+export async function saveVote(vote1) {
   const Voter = getCurrentUser();
-  let voteValue;
-  // If vote is null, save null directly; otherwise append timestamp
-  if (vote === null) {
-    voteValue = null;
-  } else {
-    const timestamp = new Date().toLocaleString('en-US', { timeZone: 'Europe/Copenhagen' });
-    voteValue = `${vote}_${timestamp}`;
-  }
-  
-  Voter.set("Candidate", voteValue);
+  const timestamp = new Date().toLocaleString('en-US', { timeZone: 'Europe/Copenhagen' });
+  const voteWithTimestamp = `${vote1}_${timestamp}`;
+  Voter.set("Candidate", voteWithTimestamp);
   try {
     await Voter.save();
   } catch (error) {
     console.log("Error saving vote: " + error);
   }
 }
-  
 
-
-export async function saveVotedBefore(votedBefore) {
+export async function saveVote2(vote2) {
   const Voter = getCurrentUser();
-  Voter.set("VotedBefore", Boolean(votedBefore));
+  const timestamp = new Date().toLocaleString('en-US', { timeZone: 'Europe/Copenhagen' });
+  const voteWithTimestamp = `${vote2}_${timestamp}`;
+  Voter.set("Candidate", voteWithTimestamp);
   try {
     await Voter.save();
   } catch (error) {
-    console.log("Error saving voted before: " + error);
+    console.log("Error saving vote: " + error);
   }
 }
 
-export async function getVotedBefore() {
-  const Voter = getCurrentUser();
-  try {
-    const votedBefore = Voter.get("VotedBefore");
-    return votedBefore;
-  } catch (error) {
-    console.log("Error retrieving voted before: " + error);
-    return null;
-  }
-}
+
 
 export async function saveVisuaRepresentation(visualRepresentation) {
   const Voter = getCurrentUser();
@@ -193,7 +179,6 @@ export async function getBooleanSelection() {
   }
 }
 
-
 // Increment Help_Visit_Counter for the current user
 export async function incrementHelpVisitCounter() {
   const user = Parse.User.current();
@@ -255,6 +240,67 @@ export async function setEndTimeSecondPhase() {
     return true;
   } catch (error) {
     console.error("Error setting EndTimeSecondPhase:", error);
+    throw error;
+  }
+}
+
+
+
+// Save the user's selection on "Have you voted before?" page
+export async function saveVotedBefore(votedBefore) {
+  const Voter = getCurrentUser();
+  Voter.set("VotedBefore", Boolean(votedBefore));
+  try {
+    await Voter.save();
+  } catch (error) {
+    console.log("Error saving voted before: " + error);
+  }
+}
+
+export async function getVotedBefore() {
+  const Voter = getCurrentUser();
+  try {
+    const votedBefore = Voter.get("VotedBefore");
+    return votedBefore;
+  } catch (error) {
+    console.log("Error retrieving voted before: " + error);
+    return null;
+  }
+}
+
+export async function syncVideoInteractionCounters(pendingCounts = {}) {
+  const user = getCurrentUser();
+  if (!user) {
+    throw new Error("No user is currently logged in");
+  }
+
+  const howToVoteIncrement = Math.max(0, Number(pendingCounts.howToVote) || 0);
+  const coercionIncrement = Math.max(0, Number(pendingCounts.coercion) || 0);
+
+  if (howToVoteIncrement === 0 && coercionIncrement === 0) {
+    return {
+      howToVote: Number(user.get("HowToVoteVideoClickCount") || 0),
+      coercion: Number(user.get("CoercionVideoClickCount") || 0),
+    };
+  }
+
+  try {
+    await user.fetch();
+
+    const currentHowToVote = Number(user.get("HowToVoteVideoClickCount") || 0);
+    const currentCoercion = Number(user.get("CoercionVideoClickCount") || 0);
+
+    user.set("HowToVoteVideoClickCount", currentHowToVote + howToVoteIncrement);
+    user.set("CoercionVideoClickCount", currentCoercion + coercionIncrement);
+
+    await user.save();
+
+    return {
+      howToVote: Number(user.get("HowToVoteVideoClickCount") || 0),
+      coercion: Number(user.get("CoercionVideoClickCount") || 0),
+    };
+  } catch (error) {
+    console.error("Error syncing video interaction counters:", error);
     throw error;
   }
 }
