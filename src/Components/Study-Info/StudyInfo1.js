@@ -30,6 +30,9 @@ const StudyInfo1 = () => {
     const botTrapSelected = selectedTaskOption === "bot-hidden-option";
     sessionStorage.setItem("taskCheckBotTrap", botTrapSelected ? "1" : "0");
 
+  // Store the task answer for use in signup
+    sessionStorage.setItem("taskAnswer", selectedTaskOption);
+
     setIsSubmitting(true);
     setTimeout(() => {
       navigate("/welcome");
